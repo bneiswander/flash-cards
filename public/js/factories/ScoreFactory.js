@@ -12,6 +12,5 @@ app.factory('ScoreFactory', function(){
         	this.correct = 0;
         	this.incorrect = 0;
         }
-
     }
 })
