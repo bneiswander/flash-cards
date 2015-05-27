@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 var FlashCardModel = require('./models/flash-card-model');
+var bodyParser = require('body-parser')
 
 var app = express(); // Create an express app!
 module.exports = app; // Export it so it can be require('')'d
@@ -10,6 +11,9 @@ var publicPath = path.join(__dirname, '../public');
 
 // The path of our index.html file. ([ROOT]/index.html)
 var indexHtmlPath = path.join(__dirname, '../index.html');
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // http://nodejs.org/docs/latest/api/globals.html#globals_dirname
 // for more information about __dirname
@@ -47,3 +51,20 @@ app.get('/cards', function (req, res) {
     });
 
 });
+
+app.post('/cards', function(req, res){
+    console.log(req.body)
+    FlashCardModel.create(req.body, function(err, entry){
+        if(err){
+          console.log(err)
+        }else{
+          res.send(entry)
+        }
+
+    })
+
+})
+
+// app.put('/cards/post', function(req, res){
+//     FlashCardModel.update
+// })

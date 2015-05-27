@@ -1,0 +1,36 @@
+<form name="newCardForm" ng-submit="newCardForm.$valid && submitNewCard(newCard)">
+	<pre> {{ newCard | json }}</pre><br>
+	<p>Question</p>
+	
+	<error-message ng-show="newCardForm.theQuestion.$error.required && newCardForm.theQuestion.$touched">
+	Question is a required field
+	</error-message>
+
+	<error-message ng-show="newCardForm.theCategory.$error.required && newCardForm.$submitted">
+	Category is a required field
+	</error-message>
+	<error-message ng-show="newCardForm.theQuestion.$error.minlength && newCardForm.theQuestion.$touched">
+	Question is too short
+    </error-message>
+
+
+
+	<input ng-minlength="15" required name="theQuestion" ng-model="newCard.question" />
+	<p>Category</p>
+	<select required name="theCategory" ng-model="newCard.category">
+		<option>MongoDB</option>
+		<option>Express</option>
+		<option>Angular</option>
+		<option>Node</option>
+	</select>
+	<div ng-repeat="answer in newCard.answers">
+		<p>Answer</p>
+		 <error-message ng-show="newCardForm.answer{{ $index }}.$error.maxlength && newCardForm.answer{{ $index }}.$touched">
+   		 Answer is too long
+   		 </error-message>
+		<input required ng-maxlength="40" name="answer{{ $index }}" ng-model="answer.text"/>
+		<input type="checkbox" name="answerCheckBox" ng-model="answer.correct"/>
+	</div>
+	<input type="submit" value="Submit"/>
+	<!-- <button type="submit" method="post" ng-submit="newCardForm.$valid && submitNewCard(newCard)">Submit</button>  -->
+</form>

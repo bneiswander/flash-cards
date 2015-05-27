@@ -6,33 +6,40 @@
         <link rel="stylesheet" type="text/css" href="css/reset.css" />
         <link rel="stylesheet" type="text/css" href="css/style.css" />
     </head>
-    <body ng-app="flashCards" ng-controller="MainController">
-        <div ng-include="'templates/statistics.html'">
-        </div>
-        <div>
-            <button
-            class="category-button"
-            ng-repeat="category in categories"
-            ng-click="getCategoryCards(category)"
-            ng-class="{active: category === selectedCategory}">
-            {{category}}
-            </button>  
-            <button 
-            class="category-button"
-            ng-click="getCategoryCards()"
-            >View All</button>
-        </div>
-        <loader></loader>
-        <flash-card card="flashCard" ng-repeat="flashCard in flashCards | orderBy: 'question'"></flash-card>
-        <script src="js/lib/angular.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/controllers/main.controller.js"></script>
-        <script src="js/controllers/stats.controller.js"></script>
-        <script src="js/factories/FlashCardsFactory.js"></script>
-        <script src="js/factories/ScoreFactory.js"></script>
-        <script src="js/directives/loader/loader.js"></script>
-        <script src='js/directives/flashcard/flashcard.js'> </script>
-        <script src='js/directives/border-on-hover/border-on-hover.js'></script>
+    <body ng-app="flashCards">
+      <div ng-controller="NewCardController">
+        <new-flash-card></new-flash-card>
+        <div ng-controller="MainController">
+            <div ng-include="'templates/statistics.html'">
+            </div>
+            <div>
+                <button
+                class="category-button"
+                ng-repeat="category in categories"
+                ng-click="getCategoryCards(category)"
+                ng-class="{active: category === selectedCategory}">
+                {{category}}
+                </button>  
+                <button 
+                class="category-button"
+                ng-click="getCategoryCards()"
+                >View All</button>
+            </div>
+            <loader></loader>
+            <flash-card card="flashCard" ng-repeat="flashCard in flashCards | orderBy: 'question'"></flash-card>
+            <script src="js/lib/angular.js"></script>
+            <script src="js/app.js"></script>
+            <script src="js/controllers/main.controller.js"></script>
+            <script src="js/controllers/stats.controller.js"></script>
+            <script src="js/factories/FlashCardsFactory.js"></script>
+            <script src='js/controllers/NewCardController.js'></script>
+            <script src="js/factories/ScoreFactory.js"></script>
+            <script src="js/directives/loader/loader.js"></script>
+            <script src='js/directives/flashcard/flashcard.js'> </script>
+            <script src='js/directives/border-on-hover/border-on-hover.js'></script>
+            <script src='js/directives/newFlashCard/newFlashCard.js'></script>
+            </div>
+      </div>
     </body>
 </html>
 
