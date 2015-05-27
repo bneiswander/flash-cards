@@ -1,1 +1,1 @@
-var app = angular.module('flashCards', []);
+var app = angular.module('flashCards', ['ui.bootstrap', 'ui.bootstrap.tpls']);
